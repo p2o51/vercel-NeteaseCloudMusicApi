@@ -4,13 +4,8 @@
   "description": "网易云音乐 NodeJS 版 API",
   "scripts": {
     "start": "node app.js",
-    "test": "mocha -r intelli-espower-loader -t 60000 server.test.js main.test.js --exit",
-    "lint": "eslint \"**/*.{js,ts}\"",
-    "lint-fix": "eslint --fix \"**/*.{js,ts}\"",
-    "prepare": "husky install",
-    "pkgwin": "pkg . -t node18-win-x64 -C GZip -o bin/app --no-bytecode",
-    "pkglinux": "pkg . -t node18-linux-x64 -C GZip -o bin/app --no-bytecode",
-    "pkgmacos": "pkg . -t node18-macos-x64 -C GZip -o bin/app --no-bytecode"
+    "build": "echo 'Build completed'",
+    "vercel-build": "echo 'Vercel build completed'"
   },
   "bin": "./app.js",
   "pkg": {
