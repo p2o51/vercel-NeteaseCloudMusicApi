@@ -10,11 +10,15 @@ async function generateConfig() {
     const cookie = res.body.cookie
     if (cookie) {
       const cookieObj = cookieToJson(cookie)
-      fs.writeFileSync(
-        path.resolve(tmpPath, 'anonymous_token'),
-        cookieObj.MUSIC_A,
-        'utf-8',
-      )
+      try {
+        fs.writeFileSync(
+          path.resolve(tmpPath, 'anonymous_token'),
+          cookieObj.MUSIC_A,
+          'utf-8',
+        )
+      } catch (fsError) {
+        console.log('Warning: Could not write to anonymous_token file, continuing without it')
+      }
     }
   } catch (error) {
     console.log(error)

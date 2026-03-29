@@ -3,8 +3,12 @@ const path = require('path')
 const tmpPath = require('os').tmpdir()
 const { cookieToJson } = require('./util')
 
-if (!fs.existsSync(path.resolve(tmpPath, 'anonymous_token'))) {
-  fs.writeFileSync(path.resolve(tmpPath, 'anonymous_token'), '', 'utf-8')
+try {
+  if (!fs.existsSync(path.resolve(tmpPath, 'anonymous_token'))) {
+    fs.writeFileSync(path.resolve(tmpPath, 'anonymous_token'), '', 'utf-8')
+  }
+} catch (e) {
+  console.log('Warning: Could not create anonymous_token file, continuing without it')
 }
 
 let firstRun = true

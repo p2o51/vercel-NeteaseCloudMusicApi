@@ -8,10 +8,19 @@ const tunnel = require('tunnel')
 const fs = require('fs')
 const path = require('path')
 const tmpPath = require('os').tmpdir()
-const anonymous_token = fs.readFileSync(
-  path.resolve(tmpPath, './anonymous_token'),
-  'utf-8',
-)
+
+// Try to read the anonymous_token file, but provide a fallback if it doesn't exist
+let anonymous_token = ''
+try {
+  anonymous_token = fs.readFileSync(
+    path.resolve(tmpPath, './anonymous_token'),
+    'utf-8'
+  )
+} catch (e) {
+  // In serverless environments, we might not be able to read from the file system
+  // So we'll use a default empty string
+  console.log('Warning: Could not read anonymous_token file, using default empty string')
+}
 const { URLSearchParams, URL } = require('url')
 // request.debug = true // 开启可看到更详细信息
 
